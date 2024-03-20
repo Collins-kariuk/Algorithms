@@ -1,0 +1,74 @@
+\documentclass[11pt]{article}
+
+\usepackage{clrscode}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{url}
+
+\title{CS140 - Pseudocode Example}
+\author{David Kauchak}
+\date{}
+
+\parindent=0in
+
+\begin{document}
+\maketitle
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The codebox environment is not standard.  You'll need
+% to include something like:
+% 
+% \usepackage{clrscode}
+%
+% at the top of this file and then download this style file, for example from:
+% http://www.cs.dartmouth.edu/~thc/clrscode/clrscode.sty
+%
+% or you can just write code in something like the verbatim environment, which may be easier.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The pseudocode examples uses the \texttt{codebox} environment.  You need to add:
+
+\begin{verbatim}
+\usepackage{clrscode}
+\end{verbatim}
+
+at the top of your document.\\
+
+If your version doesn't automatically find the package, you may also need to:
+
+\begin{enumerate}
+\item download the .sty file from:
+\url{http://www.cs.dartmouth.edu/~thc/clrscode/clrscode.sty}
+
+\item put it in the same directory as your .tex file (or upload it to your overleaf project directory)
+
+\item and you \emph{might} need to change the package import to:
+
+\begin{verbatim}
+\usepackage{./clrscode}
+\end{verbatim}
+
+\end{enumerate}
+
+Here are the examples from the first day of class:
+
+		\begin{codebox}
+		\Procname{$\proc{Mystery1}(A)$}
+		\li $x \gets -\infty$
+		\li \For $i \gets 1$ \To $\id{length}[A]$
+		\li	\If $A[i] > x$
+		\li		$x \gets A[i]$
+			\End
+		 \End
+		\li \Return $x$
+	       \end{codebox}
+
+		\begin{codebox}
+		\Procname{$\proc{Mystery2}(A)$}
+		\li \For $i \gets 1$ \To $\lfloor\id{length}(A)/2\rfloor$
+		\li 	 swap $A[i]$ and $A[\id{length}(A) - (i-1)]$
+			\End
+		\end{codebox}
+
+\end{document}

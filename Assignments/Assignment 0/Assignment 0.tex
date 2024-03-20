@@ -1,0 +1,312 @@
+ \documentclass[11pt]{article}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{clrscode}
+\usepackage{amsmath}
+
+
+\title{CS140 - Assignment 0\\\small{Due: Sunday,  Jan 21 at 10pm}}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\begin{center}
+
+\footnotesize{http://xkcd.com/1162/}
+\end{center}
+
+
+\begin{itemize}
+\item For this assignment you must work with a partner.   You can work with someone from either section.  If you would like help finding a partner, let me know \textbf{ASAP}.
+
+\item This assignment must be typeset using \LaTeX.  You are
+  encouraged to take the source file for the assignment and modify it by adding your solutions.  
+  
+\item An important part of being a computer scientist is the ability
+  to express solutions clearly and thoroughly.  Therefore, you are
+  expected to explain each step of your solution and to present your
+  solutions clearly and precisely.  Part of the score on each problem
+  will be for quality of presentation.  Note that correct answers
+  without justification are not worth very many points!
+\end{itemize}
+
+\vspace*{.1cm}
+
+\begin{enumerate}
+
+\item \textbf{[14 points]} Which is bigger?
+
+For each of the two options below, state which one is larger (or if they're equal) and give a justification for your answer.  If the base of the log is not specified, then the answer should apply to all bases ($\ge 2$).  Your justification should be similar to those we looked at in class.  Do \textbf{not} simply plug these answer into a calculator (though you're welcome to check your logic that way).  For all variables (e.g., $x$ or $n$, assume they are positive).
+
+\begin{enumerate}
+
+\item $\log 10$ vs. $\log 20$
+
+    $\log 20$ because log function is increases with increasing with increase in the argument. That is, the log is an increasing function.
+
+\item $\log_4 n$ vs $\log_5 n$
+
+    $\log_4 n > \log_5 n$ \\
+    $\log_4 n$ = $\frac{log n}{log 4}$ \\
+    $\log_5 n$ = $\frac{log n}{log 5}$ \\
+    this holds because maintaining $n$ as the numerator, the $log 4 < log 5$
+
+
+\item $\log_5 75$ vs $\log_2 12$
+
+    $\log_5 75 > \log_2 12$ \\
+    $\log_5 75 = \log_5 5 + \log_5 5 + \log_5 3  = 2 + \log_5 3 $\\
+    $\log_2 12 = \log_2 2 + \log_2 2 + \log_2 3 2 + \log_2 3 $\\
+    
+    $\log_2 3 > \log_5 3$ by 1(b) above.
+
+
+\item $\log_7 24.5 $ vs $\log_5 12.5$
+
+    $\log_7 24.5 = \log_7 (\frac{49}{2}) = \log_7 49 - \log_7 2 = 2 - \log_7 2$ \\
+    $\log_5 12.5 = \log_5 (\frac{25}{2}) = \log_5 25 - \log_5 2 = 2 - \log_5 2$ \\
+    but $\log_5 2 > \log_7 2$ by 1(b) above, hence $\log_7 24.5 > \log_5 12.5$ \\
+
+
+\item $\log x^4$ vs $\log x + \log x^3$
+
+    $\log x^4$ = $\log x + \log x^3$ \\
+    $\log x^4 = 4 \log x$ \\
+    $\log x + \log x^3$ = $\log x + 3\log x = 4 \log_x$ as above
+
+
+\item $((x^2)^2)^2$ vs $x^7$
+
+     $((x^2)^2)^2 > x^7$ \\
+      $((x^2)^2)^2 = x^(2\cdot2\cdot2) = x^8 > x^7$
+
+
+\item $a^b$ vs. $b^a$ for constants $a$ and $b$, where $a > b > 3$.
+
+    $b^a > a^b$ \\
+    By way of examples, we were able to figure out that the value of the exponent matters more than the value of the base so $b^a > a^b$.
+
+\end{enumerate}
+
+
+\item \textbf{[5 points]} Pseudocode
+
+\begin{enumerate}
+
+\item Write pseudocode for a function \texttt{dedup} that takes as input an array/list and returns a new array/list with all of the duplicates removed.  You don't have to necessarily follow the conventions used in class, but use something reasonable and be consistent. 
+\begin{codebox}
+    \Procname{$\proc{DEDUP}(A)$}
+    \li $a \gets []$
+    \li $b \gets \{\}$
+    \li \For $i \gets 1$ \To $\id{length}[A]$
+    \li	\If $A[i]$ not in  $b$
+    \li \hspace{1em} add $A[i]$ to $a$ 
+    \li \hspace{1em}  add $A[i]$ to $b$ 
+        \End
+     \End
+    \li \Return $a$
+       \end{codebox}
+
+\item What is the big-O running time of your function?  Give a brief (one sentence) justification.
+
+    \textbf{Answer:}
+    
+    O(n) since the function runs a single for-loop 
+\end{enumerate}
+
+
+\item\textbf{[9 points]} Properties of Logs
+
+To get you warmed up, here is an example proof showing that $\log_{b} xy = \log_{b} x + \log_{b} y$.
+
+Let:
+
+$k = \log_{b} xy$\\
+$\ell = \log_{b} x$\\
+$m = \log_{b} y$
+
+We want to show that $k=\ell+m$.\\
+
+- By the definition of logarithms, we know:
+
+$b^{k} = xy$\\
+$b^{\ell} = x$\\
+$b^{m} = y$\\
+
+- From these, by properties of exponents
+
+$b^{k} = b^{\ell} b^{m} = b^{\ell + m}$\\
+
+Taking the log of both sides, we obtain $k = \ell + m$, which is what we wanted to show.\\
+
+Now give proofs for each of the following properties of logarithms.
+Write your proofs out carefully.  You should assume that $a, b, c, n$
+are positive \emph{real numbers} (not necessarily integers).
+
+\begin{enumerate}
+\item $\log_{b} a^{n} = n \log_{b} a$
+
+    Let:\\
+    $k=log_b a^n$\\
+    $l=log_b a$\\
+    We want to show that $k=nl$
+
+    - By the definition of logarithms, we know:
+    $b^k=a^n$ and $b^l=a$
+
+    - We can apply exponent to the nth power to $b^l=a$ to get:
+
+\begin{align*}
+    (b^l)^n &= a^n \\ 
+    b^{ln} &= a^n  \quad \text{using the exponential power laws.} \\ 
+    b^{ln} &= b^k \quad \text{since} \quad b^k=a^n \\
+    ln &= k \quad \text{taking the log of both sides.} \\
+    k &= ln \quad \text{which is what we wanted to show.} \\
+\end{align*}
+
+\item $\log_{b} a = \frac{\log_{c} a}{\log_{c} b}$
+    - Let:\\
+    $k=log_b a$\\
+    $l=log_c a$\\
+    $m=log_c b$
+    
+    We want to show that $k = \frac{l}{m}$.
+
+    - By the definition of logarithm:
+    
+    $b^k=a$\\
+    $c^l=a$\\
+    $c^m=b$\\
+
+    - Therefore $a=b^k=c^l$. Concentrating on the last two:
+    \begin{align*}
+        b^k&=c^l \\
+        (c^m)^k &= c^l \quad \text{since} \quad c^m=b \\
+        c^{mk} &= c^l \quad \text{using the exponential power laws.} \\ 
+        mk &= l \quad \text{taking the log of both sides.} \\
+        k &= \frac{l}{m} \quad \text{which is what we wanted to show.} \\
+    \end{align*}
+
+
+\item $a^{\log_{b} n} = n^{\log_{b} a}$
+
+Take the log of both sides \\
+\begin{align*}
+    \log a^{\log_{b} n} &= \log n^{\log_{b} a} \\
+    \log_{b} n \log a &= \log_{b} a \log n \quad \text{using the property in (a).}\\
+    \text{Focusing on the left-hand side:} \\
+    \log_{b} n \log a &= \frac{\log n \cdot \log a}{\log b} \quad \text{using the property in (b).}\\
+    \text{Focusing on the right-hand side:} \\
+    \log_{b} a \log n &= \frac{\log a \cdot \log n}{\log b} \quad \text{using the property in (b).}\\
+    \text{Equating both sides, we find that they are equivalent} \\
+    \frac{\log a \cdot \log n}{\log b} &= \frac{\log n \cdot \log a}{\log b}
+\end{align*}
+
+\end{enumerate}
+
+\vspace*{.4cm}
+
+\item \textbf{[5 points]} Running Times 
+
+Suppose you have algorithms that execute the following number of
+operations as a function of the input size $n$.  If you have a
+computer that can perform $10^{10}$ operations per second, for each
+algorithm what is the largest (integer!) input size $n$ for which you
+would be able to get the result within a minute?  Be as precise as
+possible.  But, for once, no explanation necessary!
+\begin{enumerate}
+\item $60n^2$ 
+
+    $n=100000$
+\item $n^3$
+
+    $n=8434$
+
+\item $\sqrt{n}$
+
+    $n=3.6 \times 10^{23}$
+\item $n\log_2 n$
+
+    $n=1.763\times 10^{10}$
+    
+\item $2^n$
+
+    $n = 39$
+
+\end{enumerate}
+
+\vspace*{.5cm}
+
+\item \textbf{[20 points]} Writing proofs
+
+  The objective of these two problems are to reinforce clear and precise
+writing on mathematical material.
+
+\begin{enumerate}
+\item
+There are two buses, A and B, about to take students on a field trip.
+Bus A contains 50 1st grade students.  Bus B contains 50 2nd grade
+students.  Before the buses leave, 8 students run out of Bus A and
+onto Bus B.  The teachers then randomly choose 8 of the now 58
+students on Bus B and force them to move to Bus A.  The buses then
+(finally!) drive off.
+
+Are there more 2nd grade students in Bus A or more 1st grade students
+in Bus B?
+
+\textbf{Answer:}
+
+Let's denote the number of second graders selected to move from B to A as $x$. Consequently, the number of first graders moving from B to A would be $8-x$. This means that, in the end, A contains $x$ second graders. To determine the final number of first graders in B, we consider that initially 8 first graders moved from A to B and later $8-x$ of them moved back to A, leaving $8 - (8-x) = x$ first graders in B. Therefore, it follows that there are equal numbers of first and second graders in both A and B.
+
+
+\item Prove by induction that $\sum_{i=1}^n \frac{1}{i(i+1)} =
+  \frac{n}{n+1}$ for all integers $n \geq 1$.  Do you need strong
+  induction?  Why or why not?
+
+  \textbf{Answer:}
+
+  We show that  $\sum_{i=1}^n \frac{1}{i(i+1)} =
+  \frac{n}{n+1}$ for all integers $n \geq 1$.
+
+  1. \textbf{Base case}: We show that the statement holds for $n=1$.
+  $\sum_{i=1}^1=\frac{1}{1+1}=\frac{1}{2}$. If we do the same for the left hand side, $\sum_{i=1}^1 = \frac{1}{1(1+1)}=\frac{1}{2}$. They're both equal, as we would expect, and so the base case holds true.
+  
+  2. \textbf{Inductive step}.
+    The inductive hypothesis: We assume that the statement is true for some integer $k$, $\sum_{i=1}^k=\frac{1}{i(i+1)}=\frac{k}{k+1}$.
+    
+    Using the inductive hypothesis, we need to prove $\sum_{i=1}^{k+1}=\frac{1}{i(i+1)}=\frac{k+1}{k+2}$
+
+    By the definition of sum:
+
+    $\sum_{i=1}^{k+1}=\frac{1}{i(i+1)}=\frac{1}{(k+1)(k+2)}+\sum_{i=1}^k\frac{1}{i(i+1)}$
+
+    By the inductive hypothesis:
+
+    \begin{align*}
+        \sum_{i=1}^{k+1} &= \frac{1}{(k+1)(k+2)}+\frac{k}{k+1} \\
+        &= \frac{k(k+2)+1}{(k+1)(k+2)} \\
+        &= \frac{k^2+2k+1}{(k+1)(k+2)} \\
+        &= \frac{(k+1)^2}{(k+1)(k+2)} \\
+        &= \frac{k+1}{k+2} \quad \text{This is what we wanted to show}
+    \end{align*}
+
+    Finally, we can conclude that $\sum_{i=1}^n \frac{1}{i(i+1)} =
+  \frac{n}{n+1}$ for all integers $n \geq 1$.
+
+  Strong induction is not necessary in this case, as we have successfully demonstrated that weak induction is entirely adequate to establish the validity of the given statement.
+    
+    
+    
+\end{enumerate}
+
+
+\end{enumerate}
+
+\vspace*{.4cm}
+
+\end{document}
+
